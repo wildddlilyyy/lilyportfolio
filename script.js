@@ -135,7 +135,9 @@ document.querySelectorAll(".filter-group[data-filter-target]").forEach((filterGr
 });
 
 const observedSections = navLinks
-  .map((link) => document.querySelector(link.getAttribute("href")))
+  .map((link) => link.getAttribute("href"))
+  .filter((href) => href?.startsWith("#"))
+  .map((href) => document.querySelector(href))
   .filter(Boolean);
 
 if ("IntersectionObserver" in window && observedSections.length > 0) {
